@@ -1,0 +1,12 @@
+<template name="friendList">
+    <ul class="friendList">
+        {{#each friend}}
+          <li>
+              <button class="btn {{#if isChallenged id}}btn-success{{else}}btn-primary challenge-friend{{/if}}">
+                  <img src="{{profilePicUrl id}}">
+                {{name}}
+              </button>
+          </li>
+        {{/each}}
+    </ul>
+</template>

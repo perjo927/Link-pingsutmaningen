@@ -1,0 +1,39 @@
+<template name="gameList">
+    <h1>Inkommande spel</h1>
+    <ul>
+      {{#each incomingGame}}
+        <li>
+            {{getNameUsingFbId sourceId}}
+            <button class="btn btn-success accept-invite"><i class="glyphicon glyphicon-ok"></i></button>
+            <button class="btn btn-danger deny-invite"><i class="glyphicon glyphicon-remove"></i></button>
+        </li>
+      {{/each}}
+    </ul>
+    <h1>Pågående spel</h1>
+    <ul>
+        {{#each ongoingGame}}
+            <li class="game-in-progress">
+                <button class="btn {{#if myTurn turn sourceId}}play-turn btn-success{{else}}btn-danger{{/if}}">
+                    {{getOpponentName sourceId targetId}}
+                </button>
+            </li>
+        {{/each}}
+    </ul>
+  <h1>Avslutade spel</h1>
+    <ul>
+      {{#each finishedGame}}
+          <li class="finished-game">
+              Vinnare:
+              {{#if gt sourceScore targetScore}}
+                {{getNameUsingFbId sourceId}}
+              {{else}}
+                {{#if eq sourceScore targetScore}}
+                  Oavgjort
+                {{else}}
+                  {{getNameUsingFbId targetId}}
+                {{/if}}
+              {{/if}}
+          </li>
+      {{/each}}
+    </ul>
+</template>
