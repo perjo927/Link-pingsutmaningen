@@ -38,4 +38,5 @@ Router.map(function () {
                                 game.questions = questions;
                                 return game;
                               }});
+  this.route('admin');
 });

@@ -1,39 +1,39 @@
 <template name="gameList">
     <h1>Inkommande spel</h1>
-    <ul>
       {{#each incomingGame}}
-        <li>
-            {{getNameUsingFbId sourceId}}
+        <div class="game-info bg-info">
             <button class="btn btn-success accept-invite"><i class="glyphicon glyphicon-ok"></i></button>
-            <button class="btn btn-danger deny-invite"><i class="glyphicon glyphicon-remove"></i></button>
-        </li>
+          {{getNameUsingFbId sourceId}}
+            <button class="btn btn-danger deny-invite pull-right"><i class="glyphicon glyphicon-remove"></i></button>
+        </div>
       {{/each}}
-    </ul>
     <h1>Pågående spel</h1>
-    <ul>
         {{#each ongoingGame}}
-            <li class="game-in-progress">
-                <button class="btn {{#if myTurn turn sourceId}}play-turn btn-success{{else}}btn-danger{{/if}}">
+            <div>
+                <button class="btn btn-block play-turn {{#if myTurn turn sourceId}}btn-success{{else}}btn-danger{{/if}}">
                     {{getOpponentName sourceId targetId}}
                 </button>
-            </li>
+            </div>
         {{/each}}
-    </ul>
   <h1>Avslutade spel</h1>
-    <ul>
       {{#each finishedGame}}
-          <li class="finished-game">
-              Vinnare:
-              {{#if gt sourceScore targetScore}}
-                {{getNameUsingFbId sourceId}}
-              {{else}}
-                {{#if eq sourceScore targetScore}}
-                  Oavgjort
-                {{else}}
-                  {{getNameUsingFbId targetId}}
-                {{/if}}
-              {{/if}}
-          </li>
+          {{#with whoWon}}
+              <div class="game-info {{className}}">
+                {{> UI.dynamic template=type}}
+              </div>
+          {{/with}}
       {{/each}}
-    </ul>
 </template>
+
+<template name="youWon">
+    Du vann mot {{getNameUsingFbId opponentId}} med {{ourScore}} poäng mot {{opponentScore}} poäng
+</template>
+
+<template name="youLost">
+    Du förlorade mot {{getNameUsingFbId opponentId}} med {{ourScore}} poäng mot {{opponentScore}} poäng
+</template>
+
+<template name="youTied">
+    Du spelade lika mot {{getNameUsingFbId opponentId}} med {{ourScore}} poäng
+</template>
+

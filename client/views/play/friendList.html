@@ -1,12 +1,15 @@
 <template name="friendList">
+    <h1>Utmana en vän!</h1>
     <ul class="friendList">
-        {{#each friend}}
+      {{#each friend}}
           <li>
-              <button class="btn {{#if isChallenged id}}btn-success{{else}}btn-primary challenge-friend{{/if}}">
+              <button class="btn btn-full-width btn-fa-height
+                             {{#if isChallenged id}}btn-success{{else}}btn-primary challenge-friend{{/if}}">
                   <img src="{{profilePicUrl id}}">
-                {{name}}
+                  {{name}}
+                  <i class="fa {{#if isChallenged id}}fa-envelope{{else}}fa-send{{/if}} fa-fw fa-big pull-right"></i>
               </button>
           </li>
-        {{/each}}
+      {{/each}}
     </ul>
 </template>

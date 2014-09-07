@@ -1,9 +1,7 @@
 <template name="singleMapTarget">
     <div id="singleMapTargetCanvas"></div>
-    <p>{{question}}</p>
-  <ul>
+    <p class="singleMapTarget-question">Vad finns här?</p>
     {{#each answers}}
-      <li>{{answer}}</li>
+      <button class="btn btn-primary btn-block singleMapTarget-answer {{#if correct}}correct-answer{{/if}}">{{answer}}</button><br>
     {{/each}}
-  </ul>
 </template>

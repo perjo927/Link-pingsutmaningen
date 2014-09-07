@@ -2,11 +2,7 @@
     <p class="singleAnswer-question">
         {{question}}
     </p>
-    <ul>
-        {{#each answers}}
-          <button class="btn btn-primary singleAnswer-answer">
-              {{answer}}
-          </button>
-        {{/each}}
-    </ul>
+  {{#each answers}}
+      <button class="btn btn-primary btn-block singleAnswer-answer {{#if correct}}correct-answer{{/if}}">{{answer}}</button><br>
+  {{/each}}
 </template>

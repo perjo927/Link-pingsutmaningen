@@ -1,5 +1,5 @@
 Template.logoutButton.events = {
-  "click button": function() {
+  "click a": function() {
     Meteor.logout();
   }
 };

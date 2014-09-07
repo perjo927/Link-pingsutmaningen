@@ -1,5 +1,5 @@
 Template.singleAnswer.events = {
-  "click button": function (event) {
+  "click .singleAnswer-answer": function (event) {
     if(Session.get("answersLocked")) return;
     Session.set("answersLocked", true);
     if(this.correct) {
@@ -7,12 +7,13 @@ Template.singleAnswer.events = {
       Session.set("points", Session.get("points") + PointsPerQuestion);
     } else {
       // TODO: Markera rätt svar
+      $(".correct-answer").addClass("btn-success");
       $(event.target).addClass("btn-danger");
     }
-    var nextQuestion = Session.get("questionNumber") + 1;
     Meteor.setTimeout(function () {
+      $(".correct-answer").removeClass("btn-success");
       $(event.target).removeClass("btn-success btn-danger").addClass("btn-primary");
-      Session.set("questionNumber", nextQuestion);
-    }, 500);
+      Session.set("whiteScreen", true);
+    }, 2500);
   }
 };

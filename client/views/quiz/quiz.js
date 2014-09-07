@@ -1,10 +1,11 @@
 Template.quiz.helpers({
   chooseQuestionTemplate: function() {
-    console.log(this);
     var num = Session.get("questionNumber");
     Session.set("answersLocked", false);
     var ret = {};
-    if(num >= QuestionsPerTurn) {
+    if(Session.get("whiteScreen") === true) {
+      ret.type = "whiteScreen";
+    } else if(num >= QuestionsPerTurn) {
       ret.type = "finishedTurn";
       ret.data = this;
     } else {
